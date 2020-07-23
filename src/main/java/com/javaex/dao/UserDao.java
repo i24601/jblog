@@ -10,6 +10,8 @@ import com.javaex.vo.UserVo;
 public class UserDao {
 	@Autowired
 	private SqlSession sqlSession;
+	
+	//회원가입
 	public int insert(UserVo userVo) {
 		System.out.println("UserDao:insert");
 		
@@ -21,5 +23,13 @@ public class UserDao {
 		System.out.println("UserDao:selectUser");
 		
 		return sqlSession.selectOne("user.selectUser", userVo);
+	}
+	
+	//아이디체크(ajax 용)
+	public UserVo selectUser(String id) {
+		System.out.println("userDao:selectUser(ajax)");
+		System.out.println(id);
+		UserVo userVo = sqlSession.selectOne("user.selectById", id);
+		return userVo;
 	}
 }

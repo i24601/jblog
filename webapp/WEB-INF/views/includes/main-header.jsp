@@ -17,7 +17,7 @@
 
 		<c:otherwise>
 			<ul class="menu">
-				<li><a href="${pageContext.request.contextPath}/usr/logout">로그아웃</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 				<li><a href="">내블로그</a></li>
 			</ul>
 		</c:otherwise>

@@ -17,12 +17,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	//회원가입 폼
 	@RequestMapping(value="/joinForm")
 	public String joinForm() {
 		System.out.println("UserController:joinForm()");
 		return "user/joinForm";
 	}
 	
+	//회원가입
 	@RequestMapping("/join")
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController:join()");
@@ -57,6 +59,16 @@ public class UserController {
 		}
 		
 	}
-		
 	
+	//로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		System.out.println("UserController:logout");
+	
+		//세션의 값을 삭제한다.
+		session.removeAttribute("authUser");
+		session.invalidate();
+		return "redirect:/";
+	}
+
 }
