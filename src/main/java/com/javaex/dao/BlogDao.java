@@ -25,5 +25,11 @@ public class BlogDao {
 		
 		return sqlSession.selectOne("blog.selectOneById", id);
 	}
+	
+	public int updateByBlogVo(BlogVo blogVo) {
+		System.out.println("BlogDao:updateByBlogVo");
+		
+		return sqlSession.update("blog.updateById", blogVo);
+	}
 
 }

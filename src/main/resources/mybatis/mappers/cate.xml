@@ -17,6 +17,7 @@
 	
 	<select id="selectAllById" parameterType="int" resultType="CateVo">
 		<![CDATA[
+			
 			select cateNo,
 				   id,
 				   cateName,
@@ -24,6 +25,7 @@
 				   regDate
 			from category
 			where id = #{id}
+			order by regDate asc
 		]]>
 	</select>
 	

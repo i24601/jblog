@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.BlogService;
 import com.javaex.service.cateService;
@@ -56,11 +59,13 @@ public class BlogController {
 		@RequestMapping(value="/{id}/admin/category")
 		public String blog_category(@PathVariable("id") int id,
 								 Model model) {
+			System.out.println("BlogController:blog_category()");
 			List<CateVo> cateList = cateService.getCateData(id);
-			System.out.println(cateList.toString());
+			
 			model.addAttribute("cateList", cateList);
 			
-			System.out.println("BlogController:blog_category()");
+			System.out.println("cateList전달");
+			System.out.println(cateList.toString());
 			return "blog/admin/blog-admin-cate";		
 	}
 		
@@ -69,8 +74,28 @@ public class BlogController {
 	public String blog_writeForm(@PathVariable("id") int id,
 							 Model model) {
 		System.out.println("BlogController:blog_writeForm()");
+		List<CateVo> cateList = cateService.getCateData(id);
+		
+		model.addAttribute("cateList", cateList);
+		
 		return "blog/admin/blog-admin-write";		
 	}
+	
+	//admin-basic 업데이트
+	@RequestMapping(value="/{id}/admin/basic/update")
+	public String blog_basicUpdate(@RequestParam("file") MultipartFile file, @ModelAttribute BlogVo blogVo) {
+		System.out.println("BlogController:blog_update()");
+		System.out.println("BlogController:blog_update()");
+		System.out.println("BlogController:blog_update()");
+		System.out.println("BlogController:blog_update()");
+
+		System.out.println(blogVo.toString());
+		blogService.update(file, blogVo);
+		
+		return "redirect:/"+blogVo.getId()+"/admin/basic";	
+	}
+	
+	
 	
 	
 }
