@@ -13,4 +13,16 @@
 		]]>
 	</insert>
 	
+	<select id="selectOneById" parameterType="int" resultType="BlogVo">
+		<![CDATA[
+			select b.id as id, 
+				   blogTitle, 
+				   logoFile, 
+				   userName
+			from blog b, users u
+			where b.id = u.id
+			and b.id = #{id}
+		]]>
+	</select>
+	
 </mapper>

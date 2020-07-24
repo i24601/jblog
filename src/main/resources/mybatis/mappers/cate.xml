@@ -15,4 +15,16 @@
 		]]>
 	</insert>
 	
+	<select id="selectAllById" parameterType="int" resultType="CateVo">
+		<![CDATA[
+			select cateNo,
+				   id,
+				   cateName,
+				   description,
+				   regDate
+			from category
+			where id = #{id}
+		]]>
+	</select>
+	
 </mapper>

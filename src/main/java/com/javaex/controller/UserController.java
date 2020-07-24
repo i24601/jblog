@@ -66,6 +66,8 @@ public class UserController {
 		
 		if(authUser != null) { //로그인 성공일때
 			System.out.println("로그인성공");
+			System.out.println("아이디: "+authUser.getId());
+			System.out.println("userName: "+authUser.getUserName());
 			session.setAttribute("authUser", authUser);
 			return "redirect:/";
 		}else { //로그인 실패일때
