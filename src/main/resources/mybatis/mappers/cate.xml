@@ -18,14 +18,21 @@
 	<select id="selectAllById" parameterType="int" resultType="CateVo">
 		<![CDATA[
 			
-			select cateNo,
+			select rownum cateOrder,
+				   cateNo,
 				   id,
 				   cateName,
 				   description,
 				   regDate
-			from category
-			where id = #{id}
-			order by regDate asc
+				   
+			from(select cateNo,
+					   id,
+					   cateName,
+					   description,
+					   regDate
+				from category
+				where id = #{id}
+				order by regDate desc)
 		]]>
 	</select>
 	
