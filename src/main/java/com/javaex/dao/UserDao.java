@@ -32,4 +32,6 @@ public class UserDao {
 		UserVo userVo = sqlSession.selectOne("user.selectById", id);
 		return userVo;
 	}
+	
+	//블로그 
 }

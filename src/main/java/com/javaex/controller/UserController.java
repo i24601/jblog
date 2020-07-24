@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.javaex.service.BlogService;
 import com.javaex.service.UserService;
+import com.javaex.service.cateService;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -16,6 +18,12 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private BlogService blogService;
+	
+	@Autowired
+	private cateService cateService;
 	
 	//회원가입 폼
 	@RequestMapping(value="/joinForm")
@@ -30,8 +38,15 @@ public class UserController {
 		System.out.println("UserController:join()");
 		
 		//서비스를 통해 회원정보 저장
-		userService.join(userVo);
-		return "user/joinSuccess";
+		int result =userService.join(userVo);
+		if(result==1) {
+			blogService.newBlog(userVo);
+			cateService.newCate(userVo);
+			return "user/joinSuccess";
+		} else {
+			//회원가입 실패
+			return "user/joinForm";
+		}
 	}
 	
 	//로그인 폼
