@@ -29,7 +29,7 @@
 		      		<tr>
 		      			<td><label for="txtId">아이디</label></td>
 		      			<td><input id="txtId" type="text" name="id"></td>
-		      			<td><button id="btnIdCheck" type="button">아이디체크</button></td>
+		      			<td><button id="btnIdCheck" type="button" value="">아이디체크</button></td>
 		      		</tr>
 		      		<tr>
 		      			<td></td>
@@ -92,6 +92,7 @@
 				/*성공시 처리해야될 코드 작성*/
 				if(result == true){
 					$("#tdMsg").text("사용가능");
+					$("#btnIdCheck").val("true");
 				}else {
 					$("#tdMsg").text("사용불가");
 				}
@@ -101,9 +102,27 @@
 			}
 		});
 		
-		
-		
 	} );
+	
+	$("#btnJoin").on("click", function(){	
+		var chk = $("#btnIdCheck").val();
+		if(chk=='true') {
+			return true;
+		} else {
+			$("#tdMsg").text("아이디 중복 확인해주세요");
+			return false;
+		}
+	});
+	
+	$("#txtId").keypress(function(){
+		var chk = $("#btnIdCheck").val();
+		if(chk=='true'){
+		$("#btnIdCheck").val("");
+		$("#tdMsg").text("아이디가 변경되었습니다");
+		}
+	});
+	
+	
 </script>
 
 </html>
