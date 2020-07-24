@@ -61,8 +61,20 @@ public class BlogController {
 								 Model model) {
 			System.out.println("BlogController:blog_category()");
 			List<CateVo> cateList = cateService.getCateData(id);
-			
 			model.addAttribute("cateList", cateList);
+			
+			
+			
+			
+			//blogTitle 얻기위해
+			BlogVo blogVo = blogService.getBlogData(id);
+			System.out.println(blogVo.toString());
+			model.addAttribute("blogVo", blogVo);
+			
+			
+			
+			
+			
 			
 			System.out.println("cateList전달");
 			System.out.println(cateList.toString());
@@ -75,8 +87,17 @@ public class BlogController {
 							 Model model) {
 		System.out.println("BlogController:blog_writeForm()");
 		List<CateVo> cateList = cateService.getCateData(id);
-		
 		model.addAttribute("cateList", cateList);
+		
+		
+		
+		
+		BlogVo blogVo = blogService.getBlogData(id);
+		System.out.println(blogVo.toString());
+		model.addAttribute("blogVo", blogVo);
+		
+		
+		
 		
 		return "blog/admin/blog-admin-write";		
 	}

@@ -18,7 +18,7 @@
 
 		<!-- 개인블로그 해더 -->
 
-
+		
 		<div id="content">
 			<ul id="admin-menu" class="clearfix">
 				<li class="tabbtn selected"><a href="${pageContext.request.contextPath}/${authUser.id}/admin/basic">기본설정</a></li>

@@ -3,7 +3,16 @@
 
 <div id="header" class="clearfix">
 	<h1>
-		<a href="">${blogVo.blogTitle}</a>
+		<c:if test="${blogVo ne null}">
+			<a href="">${blogVo.blogTitle}</a>
+		</c:if>
+		
+		<c:if test="${blogVo eq null}">
+			<c:if test="${cateList ne null}">
+				<a href="">${blogVo.blogTitle}</a>
+			</c:if>
+		</c:if>
+		
 	</h1>
 
 	<c:choose>
