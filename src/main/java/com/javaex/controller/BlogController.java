@@ -48,10 +48,12 @@ public class BlogController {
 		int cateNo = cateList.get(0).getCateNo();
 		PostVo postVo = postService.getPost(cateNo);
 		
+		List<PostVo> postList = postService.getPost(cateNo, "list");
 		
 		model.addAttribute("postVo", postVo);
 		model.addAttribute("blogVo", blogVo);
 		model.addAttribute("cateList", cateList);
+		model.addAttribute("postList", postList);
 		
 		/* cateService.getCateData(id); */
 
