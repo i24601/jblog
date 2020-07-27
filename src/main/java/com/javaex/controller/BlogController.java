@@ -57,8 +57,11 @@ public class BlogController {
 	@RequestMapping(value = "/{id}/admin/category")
 	public String blog_category(@PathVariable("id") int id, Model model) {
 		System.out.println("BlogController:blog_category()");
-		List<CateVo> cateList = cateService.getCateData(id);
-		model.addAttribute("cateList", cateList);
+		
+		/*
+		 * List<CateVo> cateList = cateService.getCateData(id);
+		 * model.addAttribute("cateList", cateList);
+		 */
 
 		BlogVo blogVo = blogService.getBlogData(id);
 		System.out.println(blogVo.toString());

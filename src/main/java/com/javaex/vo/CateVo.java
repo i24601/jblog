@@ -1,31 +1,30 @@
 package com.javaex.vo;
 
 public class CateVo {
-	private int cateNo, cateOrder;
+	private int cateNo, cateOrder, postCnt;
 	private String id, cateName, description, regDate;
 	
 	public CateVo() {
 	}
 
-	
-
-	
-	
-	public CateVo(int cateNo, int cateOrder, String id, String cateName, String description, String regDate, String blogTitle) {
+	public CateVo(int cateNo, int cateOrder, int postCnt, String id, String cateName, String description,
+			String regDate) {
 		this.cateNo = cateNo;
 		this.cateOrder = cateOrder;
+		this.postCnt = postCnt;
 		this.id = id;
 		this.cateName = cateName;
 		this.description = description;
 		this.regDate = regDate;
 	}
 
+	public int getCateNo() {
+		return cateNo;
+	}
 
-	
-
-
-
-
+	public void setCateNo(int cateNo) {
+		this.cateNo = cateNo;
+	}
 
 	public int getCateOrder() {
 		return cateOrder;
@@ -35,14 +34,12 @@ public class CateVo {
 		this.cateOrder = cateOrder;
 	}
 
-
-
-	public int getCateNo() {
-		return cateNo;
+	public int getPostCnt() {
+		return postCnt;
 	}
 
-	public void setCateNo(int cateNo) {
-		this.cateNo = cateNo;
+	public void setPostCnt(int postCnt) {
+		this.postCnt = postCnt;
 	}
 
 	public String getId() {
@@ -77,18 +74,12 @@ public class CateVo {
 		this.regDate = regDate;
 	}
 
-
-
-
-
 	@Override
 	public String toString() {
-		return "CateVo [cateNo=" + cateNo + ", cateOrder=" + cateOrder + ", id=" + id + ", cateName=" + cateName
-				+ ", description=" + description + ", regDate=" + regDate + "]";
+		return "CateVo [cateNo=" + cateNo + ", cateOrder=" + cateOrder + ", postCnt=" + postCnt + ", id=" + id
+				+ ", cateName=" + cateName + ", description=" + description + ", regDate=" + regDate + "]";
 	}
-
 	
-
 	
 	
 	

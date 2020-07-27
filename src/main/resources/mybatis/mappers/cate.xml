@@ -4,7 +4,7 @@
 <mapper namespace="cate">
 
 	<!-- default 카테고리 정보저장 -->
-	<insert id="insert" parameterType="UserVo">
+	<insert id="insertNew" parameterType="UserVo">
 		<![CDATA[
 			insert into category
 			values (seq_category_no.nextval,
@@ -15,24 +15,42 @@
 		]]>
 	</insert>
 	
+	<!-- 카테고리 추가 -->
+	<insert id="insertAdd" parameterType="CateVo">
+		<![CDATA[
+			insert into category
+			values (seq_category_no.nextval,
+					#{id},
+			        #{cateName},
+			        #{description},
+			        sysdate)
+		]]>
+	</insert>
+	
 	<select id="selectAllById" parameterType="int" resultType="CateVo">
 		<![CDATA[
-			
-			select rownum cateOrder,
-				   cateNo,
+			select 
+				   rownum cateOrder,
+				   o.cateNo,
 				   id,
 				   cateName,
 				   description,
-				   regDate
-				   
+				   o.regDate,
+				   NVL(postCnt,'0') as postCnt
 			from(select cateNo,
 					   id,
 					   cateName,
 					   description,
 					   regDate
 				from category
-				where id = #{id}
-				order by regDate desc)
+				where id = 1
+				order by regDate desc) o , 
+                (select 
+                        cateno,
+                		count(postno) as postCnt 
+                from post 
+                group by cateno) p
+                where p.cateno(+) = o.cateno
 		]]>
 	</select>
 	

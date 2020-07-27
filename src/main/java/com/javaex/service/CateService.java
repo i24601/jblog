@@ -19,7 +19,7 @@ public class CateService {
 	//회원가입 카테고리
 	public int newCate(UserVo userVo) {
 		System.out.println("CateService:newCate()");
-		int result = cateDao.insert(userVo);
+		int result = cateDao.insertNew(userVo);
 		System.out.println("insert결과 "+result);
 		return result;
 	}
@@ -31,5 +31,11 @@ public class CateService {
 		return cateDao.selectAllById(id);
 	}
 	
-	//카테고리 데이터로딩 list<cateVo>
+	//블로그 카테고리 추가
+	public int addCate (CateVo cateVo){
+		System.out.println("CateService:addCate()");
+		
+		return cateDao.insertAdd(cateVo);
+	}
+	
 }

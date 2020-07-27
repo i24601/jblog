@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>JBlog</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 
 </head>
 
@@ -48,23 +48,12 @@
 		      		
 		      		
 		      		
-		      		<c:forEach items = "${cateList}" var="cateVo">
 					
 		      		<tbody id="cateList">
 		      			<!-- 리스트 영역 -->
-		      			<tr>
-							<td>${cateVo.cateOrder}</td>
-							<td>${cateVo.cateName}</td>
-							<td>7</td>
-							<td>${cateVo.description}</td>
-						    <td class='text-center'>
-						    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">
-						    </td>
-						</tr>
+		      			
 						<!-- 리스트 영역 -->
 					</tbody>
-					
-					</c:forEach>
 					
 					
 					
@@ -77,11 +66,11 @@
 					</colgroup>
 		      		<tr>
 		      			<td class="t">카테고리명</td>
-		      			<td><input type="text" name="name" value=""></td>
+		      			<td><input type="text" name="name" id="cateName"></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="t">설명</td>
-		      			<td><input type="text" name="desc"></td>
+		      			<td><input type="text" name="desc" id="description"></td>
 		      		</tr>
 		      	</table> 
 			
@@ -104,6 +93,99 @@
 	<!-- //wrap -->
 </body>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+	//전체 카테고리 리스트 불러오기
+	fetchList();
+	});
+
+	$("#cateList").on("click", "a", function(){
+		console.log("클릭");
+	});
+	
+	
+	$("#btnAddCate").on("click", function() {
+		
+		var data = {id : "${authUser.id}",
+					cateName : $("#cateName").val(),
+					description : $("#description").val()};
+		
+		$.ajax({
+
+			url : "${pageContext.request.contextPath }/api/category/add",
+			type : "post",
+			//헤더의 컨텐츠 타입
+			contentType : "application/json",
+			
+			data : JSON.stringify(data),
+			
+			
+			dataType : "json",
+			success : function(result) {
+				
+				
+				console.log(result+"건 처리되었습니다");
+			
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
+	
+	
+	
+	function fetchList() {
+
+		$.ajax({
+
+			url : "${pageContext.request.contextPath }/api/category/list",
+			type : "post",
+			//헤더의 컨텐츠 타입
+			//contentType : "application/json",
+			data : {userId : "${authUser.id}"},
+			
+			
+			
+			
+			dataType : "json",
+			success : function(cateList) {
+				/*성공시 처리해야될 코드 작성*/
+				/* $("#guestbooklistArea") */
+				
+				console.log("받은 카테고리"+cateList);
+				
+				for (var i = 0; i < cateList.length; i++) {
+					render(cateList[i], "down");
+				}
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
+	function render(CateVo, direction) {
+		
+		var str = "";
+		str += '<tr>';
+		str += '<td>' + CateVo.cateOrder + '</td>';
+		str += '<td>' + CateVo.cateName + '</td>';
+		str += '<td>' + CateVo.postCnt + '</td>';
+		str += '<td>' + CateVo.description + '</td>';
+		str += '<td class = "text-center" id = "t-'+CateVo.cateNo+'"><img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>';
+		str += '</tr>';
+		
+		console.log(str);
+		if (direction == "down") {
+			$("#cateList").append(str);
+		} else if (direction == "up") {
+			$("#cateList").prepend(str);
+		}
+	};
+	
+</script>
 
 
 
