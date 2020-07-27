@@ -33,4 +33,11 @@ public class CateDao {
 		System.out.println("CateDao:insertAdd()");
 		return sqlSession.insert("cate.insertAdd", cateVo);
 	}
+	
+	//카테고리 삭제
+	public int delete(int cateNo) {
+		System.out.println("input "+cateNo);
+		System.out.println("CateDao:delete()");
+		return sqlSession.insert("cate.delete", cateNo);
+	}
 }

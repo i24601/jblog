@@ -30,28 +30,34 @@
 	<select id="selectAllById" parameterType="int" resultType="CateVo">
 		<![CDATA[
 			select 
-				   rownum cateOrder,
-				   o.cateNo,
-				   id,
-				   cateName,
-				   description,
-				   o.regDate,
-				   NVL(postCnt,'0') as postCnt
+			       rownum cateOrder,
+			       o.cateNo,
+			       id,
+			       cateName,
+			       description,
+			       o.regDate,
+			       NVL(postCnt,'0') as postCnt
 			from(select cateNo,
-					   id,
-					   cateName,
-					   description,
-					   regDate
-				from category
-				where id = 1
-				order by regDate desc) o , 
-                (select 
-                        cateno,
-                		count(postno) as postCnt 
-                from post 
-                group by cateno) p
-                where p.cateno(+) = o.cateno
+			           id,
+			           cateName,
+			           description,
+			           regDate
+			    from category
+			    where id = 1
+			    order by cateno asc) o , 
+			    (select 
+			            cateno,
+			            count(postno) as postCnt 
+			    from post 
+			    group by cateno) p
+			    where p.cateno(+) = o.cateno
+			    order by cateno asc
 		]]>
 	</select>
 	
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+		delete from category where cateNo=#{cateNo}
+		]]>	
+	</delete>
 </mapper>

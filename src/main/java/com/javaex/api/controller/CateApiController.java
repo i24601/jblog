@@ -39,4 +39,12 @@ public class CateApiController {
 		
 		return cateService.addCate(cateVo);
 	}
+	
+	@ResponseBody
+	@RequestMapping("/delete")
+	public int delete(@RequestParam("cateNo") int cateNo) {
+		System.out.println("ajax 카테고리 삭제");
+		
+		return cateService.deleteCate(cateNo);
+	}
 }

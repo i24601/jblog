@@ -151,7 +151,6 @@
 			dataType : "json",
 			success : function(cateList) {
 				/*성공시 처리해야될 코드 작성*/
-				/* $("#guestbooklistArea") */
 				
 				console.log("받은 카테고리"+cateList);
 				
@@ -174,7 +173,7 @@
 		str += '<td>' + CateVo.cateName + '</td>';
 		str += '<td>' + CateVo.postCnt + '</td>';
 		str += '<td>' + CateVo.description + '</td>';
-		str += '<td class = "text-center" id = "t-'+CateVo.cateNo+'"><img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>';
+		str += '<td class = "text-center" id = "t-'+CateVo.cateNo+'"><img onclick="deleteCate('+CateVo.cateNo+')" class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>';
 		str += '</tr>';
 		
 		console.log(str);
@@ -184,6 +183,32 @@
 			$("#cateList").prepend(str);
 		}
 	};
+	
+	function deleteCate(cNo) {
+
+		$.ajax({
+
+			url : "${pageContext.request.contextPath }/api/category/delete",
+			type : "post",
+			//헤더의 컨텐츠 타입
+			//contentType : "application/json",
+			data : {cateNo : cNo},
+			
+			
+			
+			
+			dataType : "json",
+			success : function(result) {
+				/*성공시 처리해야될 코드 작성*/
+				
+				console.log(result+"건 처리");
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}});
+		};
+	
 	
 </script>
 

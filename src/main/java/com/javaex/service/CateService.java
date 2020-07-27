@@ -38,4 +38,10 @@ public class CateService {
 		return cateDao.insertAdd(cateVo);
 	}
 	
+	//블로그 카테고리 삭제
+	public int deleteCate (int cateNo){
+		System.out.println("CateService:deleteCate()");
+		return cateDao.delete(cateNo);
+	}
+	
 }
