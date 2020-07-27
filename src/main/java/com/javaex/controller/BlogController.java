@@ -84,17 +84,6 @@ public class BlogController {
 		return "blog/admin/blog-admin-write";
 	}
 	
-	// admin-writeForm : write
-	@RequestMapping(value = "/{id}/admin/writeForm/write")
-	public String blog_write(@RequestParam ("cateNo") int cateNo,
-							 @RequestParam ("postContent") String postContent,
-							 @RequestParam ("postTitle") String postTitle) {
-		System.out.println("BlogController:write");
-		System.out.println("cateNo:"+cateNo);
-		System.out.println(postContent);
-		System.out.println(postTitle);
-		return "blog/admin/blog-admin-write";
-	}
 
 	// admin-basic 업데이트
 	@RequestMapping(value = "/{id}/admin/basic/update")

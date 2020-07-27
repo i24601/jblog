@@ -27,7 +27,7 @@
 			<!-- //admin-menu -->
 			
 			<div id="admin-content">
-				<form action="${pageContext.request.contextPath}/${authUser.id}/admin/writeForm/write" method="post">
+				<form action="${pageContext.request.contextPath}/post/${authUser.id}/write" method="post">
 			      	<table id="admin-write">
 			      		<colgroup>
 							<col style="width: 100px;">
