@@ -8,7 +8,6 @@
 <title>JBlog</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 
-
 </head>
 
 <body>

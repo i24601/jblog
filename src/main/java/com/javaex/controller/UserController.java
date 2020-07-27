@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.javaex.service.BlogService;
 import com.javaex.service.UserService;
-import com.javaex.service.cateService;
+import com.javaex.service.CateService;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -23,7 +23,7 @@ public class UserController {
 	private BlogService blogService;
 	
 	@Autowired
-	private cateService cateService;
+	private CateService cateService;
 	
 	//회원가입 폼
 	@RequestMapping(value="/joinForm")

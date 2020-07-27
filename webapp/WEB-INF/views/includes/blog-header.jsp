@@ -3,16 +3,7 @@
 
 <div id="header" class="clearfix">
 	<h1>
-		<c:if test="${blogVo ne null}">
-			<a href="">${blogVo.blogTitle}</a>
-		</c:if>
-		
-		<c:if test="${blogVo eq null}">
-			<c:if test="${cateList ne null}">
-				<a href="">${blogVo.blogTitle}</a>
-			</c:if>
-		</c:if>
-		
+		<a href="">${blogVo.blogTitle}</a>
 	</h1>
 
 	<c:choose>
@@ -20,8 +11,9 @@
 		<c:when test="${authUser.id ne null}">
 			
 			<ul class="clearfix">
-			
-				<c:if test="${authUser.id eq id}">
+				
+				<%-- <c:if test="${authUser.id eq id}"> 로 해도 된다 @PathVariable로 받은 id가 넘어간다 왜그럴까 d.s가 자동으로 넘겨주는걸까?--%>
+				<c:if test="${authUser.id eq blogVo.id}">
 					<li><a class="btn_s" href="${pageContext.request.contextPath}/${authUser.id}/admin/basic">내블로그 관리</a></li>
 				</c:if>
 			

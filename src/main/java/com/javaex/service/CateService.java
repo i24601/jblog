@@ -10,7 +10,7 @@ import com.javaex.vo.CateVo;
 import com.javaex.vo.UserVo;
 
 @Service
-public class cateService {
+public class CateService {
 	
 
 	@Autowired
