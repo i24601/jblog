@@ -33,6 +33,7 @@ public class PostService {
 		return postDao.selectByCateNo(map).get(0);
 	}
 	
+	
 	public List<PostVo> getPost(int cateNo, String flag) {
 		System.out.println("포스트 불러오기");
 		System.out.println(cateNo);

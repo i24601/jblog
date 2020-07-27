@@ -40,18 +40,28 @@ public class BlogController {
 		System.out.println("BlogController:blog_main()");
 		// 블로그 카테고리 포스트
 		BlogVo blogVo = blogService.getBlogData(id);
+
+
+		PostVo postVo = null;
+		
+		List<PostVo> postList = null;
+		
+		
+		
+		
 		List<CateVo> cateList = cateService.getCateData(id);
+		//없을때
+		if(cateList.size()!=0 && cateList!=null) {
+			
+			int cateNo = cateList.get(0).getCateNo();
+			postVo = postService.getPost(cateNo);
+			postList = postService.getPost(cateNo, "list");			
+			
+		}
 		
-		System.out.println(blogVo.toString());
-		System.out.println(cateList.toString());
-		
-		int cateNo = cateList.get(0).getCateNo();
-		PostVo postVo = postService.getPost(cateNo);
-		
-		List<PostVo> postList = postService.getPost(cateNo, "list");
+		model.addAttribute("blogVo", blogVo);
 		
 		model.addAttribute("postVo", postVo);
-		model.addAttribute("blogVo", blogVo);
 		model.addAttribute("cateList", cateList);
 		model.addAttribute("postList", postList);
 		

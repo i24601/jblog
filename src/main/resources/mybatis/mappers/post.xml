@@ -35,6 +35,7 @@
 		<![CDATA[
             p.cateNo = c.cateNo and
             c.id = u.id
+            order by p.postNo desc
 		]]>
 	</select>
 </mapper>
