@@ -98,12 +98,8 @@
 	//전체 카테고리 리스트 불러오기
 	fetchList();
 	});
-
-	$("#cateList").on("click", "a", function(){
-		console.log("클릭");
-	});
 	
-	
+	//추가
 	$("#btnAddCate").on("click", function() {
 		
 		var data = {id : "${authUser.id}",
@@ -111,7 +107,6 @@
 					description : $("#description").val()};
 		
 		$.ajax({
-
 			url : "${pageContext.request.contextPath }/api/category/add",
 			type : "post",
 			//헤더의 컨텐츠 타입
@@ -121,11 +116,8 @@
 			
 			
 			dataType : "json",
-			success : function(result) {
-				
-				
-				console.log(result+"건 처리되었습니다");
-			
+			success : function(cateList) {
+				render(cateList[0], "down");
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -136,9 +128,7 @@
 	
 	
 	function fetchList() {
-
 		$.ajax({
-
 			url : "${pageContext.request.contextPath }/api/category/list",
 			type : "post",
 			//헤더의 컨텐츠 타입
@@ -157,7 +147,6 @@
 				for (var i = 0; i < cateList.length; i++) {
 					render(cateList[i], "down");
 				}
-
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -168,12 +157,12 @@
 	function render(CateVo, direction) {
 		
 		var str = "";
-		str += '<tr>';
+		str += '<tr id = "t-'+CateVo.cateNo+'">';
 		str += '<td>' + CateVo.cateOrder + '</td>';
 		str += '<td>' + CateVo.cateName + '</td>';
 		str += '<td>' + CateVo.postCnt + '</td>';
 		str += '<td>' + CateVo.description + '</td>';
-		str += '<td class = "text-center" id = "t-'+CateVo.cateNo+'"><img onclick="deleteCate('+CateVo.cateNo+')" class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>';
+		str += '<td class = "text-center"><img onclick="deleteCate('+CateVo.cateNo+')" class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>';
 		str += '</tr>';
 		
 		console.log(str);
@@ -185,9 +174,7 @@
 	};
 	
 	function deleteCate(cNo) {
-
 		$.ajax({
-
 			url : "${pageContext.request.contextPath }/api/category/delete",
 			type : "post",
 			//헤더의 컨텐츠 타입
@@ -200,9 +187,12 @@
 			dataType : "json",
 			success : function(result) {
 				/*성공시 처리해야될 코드 작성*/
-				
+				if(result==1){
+					console.log(result+"건 처리")
+					$("#t-"+cNo).remove();
+				} else {
+				}
 				console.log(result+"건 처리");
-
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);

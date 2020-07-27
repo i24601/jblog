@@ -1,6 +1,8 @@
 package com.javaex.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,15 @@ public class CateDao {
 	
 	//블로그 카테고리 로딩
 	public List<CateVo> selectAllById(int id){
-		return sqlSession.selectList("cate.selectAllById", id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("cNo", "");
+		return sqlSession.selectList("cate.selectAll", map);
+		
+	}
+	
+	public List<CateVo> selectAllById(Map<String, Object> map){
+		return sqlSession.selectList("cate.selectAll", map);
 	}
 	
 	//카테고리 추가

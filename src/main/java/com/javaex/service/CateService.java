@@ -1,6 +1,8 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,10 +34,13 @@ public class CateService {
 	}
 	
 	//블로그 카테고리 추가
-	public int addCate (CateVo cateVo){
+	public List<CateVo> addCate (CateVo cateVo){
 		System.out.println("CateService:addCate()");
-		
-		return cateDao.insertAdd(cateVo);
+		cateDao.insertAdd(cateVo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", cateVo.getId());
+		map.put("cNo", cateVo.getCateNo());
+		return cateDao.selectAllById(map);
 	}
 	
 	//블로그 카테고리 삭제

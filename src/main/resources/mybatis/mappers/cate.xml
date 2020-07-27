@@ -16,18 +16,36 @@
 	</insert>
 	
 	<!-- 카테고리 추가 -->
-	<insert id="insertAdd" parameterType="CateVo">
+	<insert id="insertAdd" parameterType="CateVo" useGeneratedKeys="true" keyProperty="cateNo">
+		
+		<selectKey keyProperty="cateNo" resultType="int" order="BEFORE">
+   	 		select seq_category_no.nextval FROM DUAL
+ 		</selectKey>
+		
 		<![CDATA[
 			insert into category
-			values (seq_category_no.nextval,
+			values (#{cateNo},
 					#{id},
 			        #{cateName},
 			        #{description},
 			        sysdate)
 		]]>
+		
 	</insert>
 	
-	<select id="selectAllById" parameterType="int" resultType="CateVo">
+	<select id="selectAll" parameterType="map" resultType="CateVo">
+	
+		<if test="cNo != '' ">
+			select cateOrder ,
+				cateNo ,
+				id ,
+				cateName ,
+				description,
+				regDate,
+				postCnt
+				from (
+		</if>
+		
 		<![CDATA[
 			select 
 			       rownum cateOrder,
@@ -43,7 +61,7 @@
 			           description,
 			           regDate
 			    from category
-			    where id = 1
+			    where id = #{id}
 			    order by cateno asc) o , 
 			    (select 
 			            cateno,
@@ -53,6 +71,12 @@
 			    where p.cateno(+) = o.cateno
 			    order by cateno asc
 		]]>
+		
+		<if test="cNo != '' ">
+		) result
+   		 where cateNo = #{cNo}
+    	</if>
+    	
 	</select>
 	
 	<delete id="delete" parameterType="int">

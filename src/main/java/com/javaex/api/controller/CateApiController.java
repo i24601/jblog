@@ -34,9 +34,9 @@ public class CateApiController {
 	
 	@ResponseBody
 	@RequestMapping("/add")
-	public int add(@RequestBody CateVo cateVo) {
+	public List<CateVo> add(@RequestBody CateVo cateVo) {
 		System.out.println("ajax 카테고리 추가");
-		
+		System.out.println("받은 데이터:"+cateVo.toString());
 		return cateService.addCate(cateVo);
 	}
 	
