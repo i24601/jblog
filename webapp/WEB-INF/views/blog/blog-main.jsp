@@ -46,7 +46,7 @@
 					<div id="postBox" class="clearfix">
 							<div id="postTitle" class="text-left"><strong>${postVo.postTitle}</strong></div>
 							<div id="postDate" class="text-left"><strong>${postVo.regDate}</strong></div>
-							<div id="postNick">래미(iremys)님</div>
+							<div id="postNick">${postVo.userName}</div>
 					</div>
 					<!-- //postBox -->
 				

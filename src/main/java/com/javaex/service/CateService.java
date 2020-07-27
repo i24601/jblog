@@ -27,7 +27,7 @@ public class CateService {
 	}
 	
 	//블로그 카테고리 로딩
-	public List<CateVo> getCateData(int id){
+	public List<CateVo> getCateData(String id){
 		System.out.println("CateService:getCateData()");
 		
 		return cateDao.selectAllById(id);

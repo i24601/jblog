@@ -24,7 +24,7 @@ public class CateApiController {
 	
 	@ResponseBody
 	@RequestMapping("/list")
-	public List<CateVo> idcheck(@RequestParam("userId") int id) {
+	public List<CateVo> idcheck(@RequestParam("userId") String id) {
 		System.out.println("ajax 카테고리 리스트");
 		System.out.println(id);
 		List<CateVo> cateList = cateService.getCateData(id);

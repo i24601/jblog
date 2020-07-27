@@ -29,7 +29,7 @@ public class BlogService {
 	}
 	
 	//블로그 데이터로딩 blogVo
-	public BlogVo getBlogData(int id) {
+	public BlogVo getBlogData(String id) {
 		System.out.println("BlogService:getBlogData()");
 		return blogDao.getBlogById(id);
 	}

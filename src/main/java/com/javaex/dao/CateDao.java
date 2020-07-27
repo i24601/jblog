@@ -25,7 +25,7 @@ public class CateDao {
 	}
 	
 	//블로그 카테고리 로딩
-	public List<CateVo> selectAllById(int id){
+	public List<CateVo> selectAllById(String id){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("cNo", "");

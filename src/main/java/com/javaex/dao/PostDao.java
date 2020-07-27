@@ -19,4 +19,8 @@ public class PostDao {
 		return sqlSession.insert("post.insert", postVo);
 	}
 	
+	public PostVo selectByCateNo(int cateNo) {
+		return sqlSession.selectOne("post.selectOne", cateNo);
+	}
+	
 }

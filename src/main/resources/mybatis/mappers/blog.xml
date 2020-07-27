@@ -13,7 +13,7 @@
 		]]>
 	</insert>
 	
-	<select id="selectOneById" parameterType="int" resultType="BlogVo">
+	<select id="selectOneById" parameterType="String" resultType="BlogVo">
 		<![CDATA[
 			select b.id as id, 
 				   blogTitle, 

@@ -17,4 +17,10 @@ public class PostService {
 		System.out.println("p service write");
 		return postDao.insert(postVo);
 	}
+	
+	public PostVo getPost(int cateNo) {
+		System.out.println("포스트 불러오기");
+		System.out.println(cateNo);
+		return postDao.selectByCateNo(cateNo);
+	}
 }

@@ -51,7 +51,9 @@
 			      		</tr>      		
 			      		<tr>
 			      			<td>&nbsp;</td>
-			      			<td><input id="textLogo" type="file" name="file"></td>      			
+			      			
+			      			<td><input id="textLogo" type="file" name="file"></td>
+			      			      			
 			      		</tr>           		
 			      	</table>
 			      	<div id="btnArea">

@@ -20,7 +20,7 @@ public class BlogDao {
 		return sqlSession.insert("blog.insert", userVo);
 	}
 	
-	public BlogVo getBlogById(int id) {
+	public BlogVo getBlogById(String id) {
 		System.out.println("BlogDao:getBlogById");
 		
 		return sqlSession.selectOne("blog.selectOneById", id);

@@ -2,18 +2,35 @@ package com.javaex.vo;
 
 public class PostVo {
 	private int postNo, cateNo;
-	private String postTitle, postContent, regDate;
+	private String postTitle, postContent, regDate, userName;
 	
 	public PostVo() {
 	}
 
-	public PostVo(int postNo, int cateNo, String postTitle, String postContent, String regDate) {
+	
+
+	public PostVo(int postNo, int cateNo, String postTitle, String postContent, String regDate, String userName) {
 		this.postNo = postNo;
 		this.cateNo = cateNo;
 		this.postTitle = postTitle;
 		this.postContent = postContent;
 		this.regDate = regDate;
+		this.userName = userName;
 	}
+
+	
+	
+	public String getUserName() {
+		return userName;
+	}
+
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
 
 	public int getPostNo() {
 		return postNo;
@@ -55,11 +72,15 @@ public class PostVo {
 		this.regDate = regDate;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "PostVo [postNo=" + postNo + ", cateNo=" + cateNo + ", postTitle=" + postTitle + ", postContent="
-				+ postContent + ", regDate=" + regDate + "]";
+				+ postContent + ", regDate=" + regDate + ", userName=" + userName + "]";
 	}
+
+	
 	
 	
 }

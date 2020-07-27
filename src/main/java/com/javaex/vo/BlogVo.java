@@ -3,14 +3,14 @@ package com.javaex.vo;
 public class BlogVo {
 
 	private String  blogTitle, logoFile, userName;
-	private int id;
+	private String id;
 	
 	public BlogVo() {
 	}
 
 	
 
-	public BlogVo(int id, String blogTitle, String logoFile, String userName) {
+	public BlogVo(String id, String blogTitle, String logoFile, String userName) {
 		this.id = id;
 		this.blogTitle = blogTitle;
 		this.logoFile = logoFile;
@@ -27,11 +27,11 @@ public class BlogVo {
 
 
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

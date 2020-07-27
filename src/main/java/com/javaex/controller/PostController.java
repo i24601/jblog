@@ -16,19 +16,20 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
+	
 	// 포스트작성
-	@RequestMapping(value = "/{id}/write")
-	public String blog_write(@PathVariable("id") int id,
-							 @RequestParam ("cateNo") int cateNo,
-							 @RequestParam ("postContent") String postContent,
-							 @RequestParam ("postTitle") String postTitle) {
-		System.out.println("PostController:write");
-		System.out.println("cateNo:"+cateNo);
-		System.out.println(postContent);
-		System.out.println(postTitle);
-		PostVo postVo = new PostVo(0, cateNo, postTitle, postContent, "");
-		postService.postWrite(postVo);
-		
-		return "redirect:/" + id + "/admin/writeForm";
-	}
+		@RequestMapping(value = "/{id}/write")
+		public String blog_write(@PathVariable("id") int id,
+								 @RequestParam ("cateNo") int cateNo,
+								 @RequestParam ("postContent") String postContent,
+								 @RequestParam ("postTitle") String postTitle) {
+			System.out.println("PostController:write");
+			System.out.println("cateNo:"+cateNo);
+			System.out.println(postContent);
+			System.out.println(postTitle);
+			PostVo postVo = new PostVo(0, cateNo, postTitle, postContent, "", "");
+			postService.postWrite(postVo);
+			
+			return "redirect:/" + id + "/admin/writeForm";
+		}
 }
