@@ -1,6 +1,8 @@
 package com.javaex.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,31 +47,18 @@ public class BlogController {
 		// 블로그 카테고리 포스트
 		BlogVo blogVo = blogService.getBlogData(id);
 
-		PostVo postVo = null;
-		List<PostVo> postList = null;
 		List<CateVo> cateList = cateService.getCateData(id);
 		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("cateList", cateList);
+		data.put("cateNo", cateNo);
+		data.put("postNo", postNo);
 		
-		//카테고리가 있을때 메인
-		if(cateList.size()!=0 && cateList!=null && cateNo==0 && postNo==0) {
-			cateNo = cateList.get(0).getCateNo();
-			postList = postService.getPList(cateNo);
-			postNo = postList.get(0).getPostNo();
-			postVo = postService.getPost(postNo);
-		} 
+		Map<String, Object> result = postService.getData(data);
+		PostVo postVo = (PostVo)result.get("postVo");
+		List<PostVo> postList = (List<PostVo>)result.get("postList"); 
 		
-		//카테고리가 있고 메인이 아닐때
-		else if(cateList.size()!=0 && cateList!=null && cateNo!=0 && postNo!=0){			
-			postList = postService.getPList(cateNo);
-			postVo = postService.getPost(postNo);
-		}
-		
-		else if(cateList.size()!=0 && cateList!=null && cateNo!=0 && postNo==0) {
-			postList = postService.getPList(cateNo);
-			postNo = postList.get(0).getPostNo();
-			postVo = postService.getPost(postNo);
-		}
-		//else는 카테고리가 없을때 null 전달
+		System.out.println(result.toString());
 		
 		model.addAttribute("blogVo", blogVo);
 		
