@@ -2,7 +2,6 @@
 package com.javaex.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,12 @@ public class PostDao {
 		return sqlSession.insert("post.insert", postVo);
 	}
 	
-	public List<PostVo> selectByCateNo(Map<String, Object> map) {
-		return sqlSession.selectList("post.selectOne", map);
+	public List<PostVo> selectByCateNo(int cateNo) {
+		return sqlSession.selectList("post.selectList", cateNo);
+	}
+	
+	public PostVo selectByPostNo(int postNo) {
+		return sqlSession.selectOne("post.selectOne", postNo);
 	}
 	
 }

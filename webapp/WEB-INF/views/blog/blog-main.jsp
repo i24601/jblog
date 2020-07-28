@@ -78,7 +78,7 @@
 						</colgroup>
 						<c:forEach items="${postList}" var="postVo">
 							<tr>
-								<td class="text-left"><a href="${pageContext.request.contextPath}/${blogVo.id}?crtCateNo=${param.crtCateNo}&postNo=${postVo.postNo}">${postVo.postTitle}</a></td>
+								<td class="text-left"><a href="${pageContext.request.contextPath}/${blogVo.id}?crtCateNo=${postVo.cateNo}&postNo=${postVo.postNo}">${postVo.postTitle}</a></td>
 								<td class="text-right">${postVo.regDate}</td>
 							</tr>
 						</c:forEach>

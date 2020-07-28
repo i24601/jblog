@@ -15,7 +15,7 @@
 		]]>
 	</insert>
 	
-	<select id="selectOne" parameterType="map" resultType="PostVo">
+	<select id="selectList" parameterType="int" resultType="PostVo">
 		<![CDATA[
 			select 
                    u.userName,
@@ -26,16 +26,25 @@
 				   to_char(c.regDate, 'YYYY/MM/DD') regDate 
 			from post p, category c, users u
 			where c.cateNo=#{cateNo} and
-		]]>
-		
-		<if test="flag != 'list' ">
-			postNo = (select max(postNo) from post where cateNo= #{cateNo}) and
-    	</if>	
-    	
-		<![CDATA[
             p.cateNo = c.cateNo and
             c.id = u.id
             order by p.postNo desc
+		]]>
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="PostVo">
+		<![CDATA[
+			select 
+                   u.userName,
+                   postNo,
+				   c.cateNo,
+				   postTitle,
+				   postContent,
+				   to_char(c.regDate, 'YYYY/MM/DD') regDate 
+			from post p, category c, users u
+			where p.postNo = #{postNo} and
+            p.cateNo = c.cateNo and
+            c.id = u.id
 		]]>
 	</select>
 </mapper>

@@ -36,28 +36,40 @@ public class BlogController {
 
 	// PathVariable은 param을 받는것이 아니다
 	@RequestMapping(value = "/{id}")
-	public String blog_main(@PathVariable("id") String id, Model model) {
+	public String blog_main(@PathVariable("id") String id,
+							@RequestParam( value = "crtCateNo", required=false, defaultValue="0") int cateNo,
+							@RequestParam( value = "postNo", required=false, defaultValue="0") int postNo,
+							Model model) {
+		
 		System.out.println("BlogController:blog_main()");
 		// 블로그 카테고리 포스트
 		BlogVo blogVo = blogService.getBlogData(id);
 
-
 		PostVo postVo = null;
-		
 		List<PostVo> postList = null;
-		
-		
-		
-		
 		List<CateVo> cateList = cateService.getCateData(id);
-		//없을때
-		if(cateList.size()!=0 && cateList!=null) {
-			
-			int cateNo = cateList.get(0).getCateNo();
-			postVo = postService.getPost(cateNo);
-			postList = postService.getPost(cateNo, "list");			
-			
+		
+		
+		//카테고리가 있을때 메인
+		if(cateList.size()!=0 && cateList!=null && cateNo==0 && postNo==0) {
+			cateNo = cateList.get(0).getCateNo();
+			postList = postService.getPList(cateNo);
+			postNo = postList.get(0).getPostNo();
+			postVo = postService.getPost(postNo);
+		} 
+		
+		//카테고리가 있고 메인이 아닐때
+		else if(cateList.size()!=0 && cateList!=null && cateNo!=0 && postNo!=0){			
+			postList = postService.getPList(cateNo);
+			postVo = postService.getPost(postNo);
 		}
+		
+		else if(cateList.size()!=0 && cateList!=null && cateNo!=0 && postNo==0) {
+			postList = postService.getPList(cateNo);
+			postNo = postList.get(0).getPostNo();
+			postVo = postService.getPost(postNo);
+		}
+		//else는 카테고리가 없을때 null 전달
 		
 		model.addAttribute("blogVo", blogVo);
 		
@@ -65,7 +77,6 @@ public class BlogController {
 		model.addAttribute("cateList", cateList);
 		model.addAttribute("postList", postList);
 		
-		/* cateService.getCateData(id); */
 
 		return "blog/blog-main";
 	}
